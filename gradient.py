@@ -1,4 +1,3 @@
-import numpy as np
 #import matplotlib.pyplot as plt
 #from mpl_toolkits.mplot3d import Axes3D
 #from matplotlib import cm
@@ -24,23 +23,26 @@ maxiter = int(input("Máximo de iterações: "))
 a = float(input("Valor do alfa: "))
 x = float(input("Valor inicial do x: ")) 
 y = float(input("Valor inicial do y: "))
-tol = float(input("Valor da toleancia: "))
+tol = 0.000001
 
-iter = 0 #iterações inicializa com zero.
+iterações = 0 #iterações inicializa com zero.
 
 p = np.array([gradx(x,y),grady(x,y)])
 old = np.array([x,y])
 d = -p
 
-while iter<maxiter or err<tol:
+while True:
 	new = old + a*d
-	err = abs(fun(old[0],old[1])-fun(new[0],new[1]))
+	err = np.abs(fun(old[0],old[1])-fun(new[0],new[1]))
+	iterações = iterações + 1
+	print("passo:",iterações)
 	print("Novo x:")
 	print(new)
-	print("\n")
 	print("valor de f(x,y):")
 	print(fun(new[0],new[1]))
 	old = new
-	iter = iter + 1
-	print("passo:",iter)
+	p = np.array([gradx(old[0],old[1]),grady(old[0],old[1])])
+	d = -p 
 	print("\n")
+	if iterações == maxiter or err < tol:
+		break;
