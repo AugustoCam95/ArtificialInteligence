@@ -3,8 +3,6 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 
-
-
 def fun(x,y):
     return ((4-((2.1)*(x**2))+((1/3)*(x**4)))*(x**2))+(x*y)-((4*(1-(y**2)))*(y**2))
 
@@ -20,15 +18,13 @@ def hessxx(x):
 def hessyy(y):
 	return 48*(y**2)-8
 
-
-
 print("\n")
 print("-------------Método gradiente---------------")
 maxiter = int(input("Máximo de iterações: "))
 a = float(input("Valor do alfa: "))
 b = float(input("Valor inicial do x: ")) 
 c = float(input("Valor inicial do y: "))
-tol = 0.000001
+tol = 0.00000001
 
 iterações = 0 #iterações inicializa com zero.
 
@@ -43,7 +39,7 @@ while True:
 	err = np.abs(fun(old[0],old[1])-fun(new[0],new[1]))
 	iterações = iterações + 1
 	print("passo:",iterações)
-	print("Novo x:")
+	print("Novo [x,y]:")
 	print(new)
 	print("valor de f(x,y):")
 	print(fun(new[0],new[1]))
