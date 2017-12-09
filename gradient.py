@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
+import matplotlib.cm as mlab
 
 def fun(x,y):
     return ((4-((2.1)*(x**2))+((1/3)*(x**4)))*(x**2))+(x*y)-((4*(1-(y**2)))*(y**2))
@@ -50,7 +51,6 @@ while True:
 	if iterações == maxiter or err < tol:
 		break;
 
-
 xx = []
 yy = []
 z = []
@@ -60,14 +60,14 @@ for i in range(len(viter)):
 	yy.append(viter[i][1])
 	z.append(fun(viter[i][0],viter[i][1]))
 
-x = np.arange(-3,3, 0.25)
-y = np.arange(-2,2, 0.25)
+x = np.arange(-5,5, 0.4)
+y = np.arange(-5,5, 0.4)
 x,y = np.meshgrid(x,y)
 function = ((4-((2.1)*(x**2))+((1/3)*(x**4)))*(x**2))+(x*y)-((4*(1-(y**2)))*(y**2))
 
 fig = plt.figure()
 ax = Axes3D(fig)
-ax.plot_surface(x,y,function, rstride = 1, cstride = 1, cmap=cm.viridis)
+ax.plot_surface(x,y,function, rstride = 1, cstride = 1, cmap=cm.viridis, alpha = 0.7)
 ax.plot(xx,yy,z)
 ax.scatter(xx,yy,z, c = 'r', marker = 'o', alpha = 1)
 ax.set_xlabel("x1")
